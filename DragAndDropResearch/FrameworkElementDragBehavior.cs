@@ -6,31 +6,35 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interactivity;
+using DragAndDropResearch.Helpers;
 
 namespace DragAndDropResearch
 {
     internal class FrameworkElementDragBehavior : Behavior<FrameworkElement>
     {
-        private bool _isTaken;
+        private Cursor _cursor;
 
         protected override void OnAttached()
         {
             base.OnAttached();
 
-            AssociatedObject.MouseLeftButtonDown += (sender, args) => _isTaken = true;
-            AssociatedObject.MouseLeftButtonUp += (sender, args) => _isTaken = false;
-            AssociatedObject.MouseLeave += AssociatedObjectOnMouseLeave;
+            AssociatedObject.MouseLeftButtonDown += AssociatedObjectOnMouseLeftButtonDown;
+            AssociatedObject.PreviewGiveFeedback += AssociatedObjectOnPreviewGiveFeedback;
         }
 
-        private void AssociatedObjectOnMouseLeave(object sender, MouseEventArgs mouseEventArgs)
+        private void AssociatedObjectOnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (_isTaken)
-            {
-                var data = new DataObject();
-                data.SetData(AssociatedObject.DataContext);
-                DragDrop.DoDragDrop(AssociatedObject, data, DragDropEffects.Move);
-            }
-            _isTaken = false;
+            _cursor = CursorHelper.ConvertToCursor(AssociatedObject, e.GetPosition(AssociatedObject));
+            AssociatedObject.Visibility = Visibility.Hidden;
+            DragDrop.DoDragDrop(AssociatedObject, AssociatedObject.DataContext, DragDropEffects.Move);
+            AssociatedObject.Visibility = Visibility.Visible;
+            _cursor = null;
+        }
+
+        private void AssociatedObjectOnPreviewGiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+            Mouse.SetCursor(_cursor);
+            e.Handled = true;
         }
     }
 }

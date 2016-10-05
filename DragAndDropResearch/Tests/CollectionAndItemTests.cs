@@ -70,5 +70,18 @@ namespace DragAndDropResearch.Tests
             Assert.AreEqual(1, c1.Count);
             Assert.AreEqual(0, c2.Count);
         }
+
+        [Test]
+        public void SameItemTest()
+        {
+            var c = new CollectionViewModel();
+            var i = new ItemViewModel();
+
+            c.Add(i);
+            c.Add(i);
+
+            Assert.AreEqual(c, i.Collection);
+            Assert.AreEqual(1, c.Count);
+        }
     }
 }

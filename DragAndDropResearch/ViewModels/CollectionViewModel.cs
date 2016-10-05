@@ -35,6 +35,14 @@ namespace DragAndDropResearch.ViewModels
             }
         }
 
+        protected override void InsertItem(int index, ItemViewModel item)
+        {
+            if (!Contains(item))
+            {
+                base.InsertItem(index, item);
+            }
+        }
+
         public Type Type { get; } = typeof (ItemViewModel);
 
         public void Drop(object item)
