@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:DragAndDropResearch"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:viewModels="clr-namespace:DragAndDropResearch.ViewModels"
+        xmlns:controls="clr-namespace:DragAndDropResearch.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Window.DataContext>
@@ -16,49 +17,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Border Width="200" Height="200" BorderThickness="1" BorderBrush="Black">
-            <ItemsControl ItemsSource="{Binding Collection1}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Background="Beige" DataContext="{Binding Collection1}">
-                            <i:Interaction.Behaviors>
-                                <local:FrameworkElementDropBehavior/>
-                            </i:Interaction.Behaviors>
-                        </WrapPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Ellipse Height="10" Width="10" Margin="5" Fill="Blue">
-                            <i:Interaction.Behaviors>
-                                <local:FrameworkElementDragBehavior/>
-                            </i:Interaction.Behaviors>
-                        </Ellipse>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Border>
-        <Border Grid.Column="1" Width="200" Height="200" BorderThickness="1" BorderBrush="Black">
-            <ItemsControl ItemsSource="{Binding Collection2}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Background="Beige" DataContext="{Binding Collection2}">
-                            <i:Interaction.Behaviors>
-                                <local:FrameworkElementDropBehavior/>
-                            </i:Interaction.Behaviors>
-                        </WrapPanel>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Ellipse Height="10" Width="10" Margin="5" Fill="Blue">
-                            <i:Interaction.Behaviors>
-                                <local:FrameworkElementDragBehavior/>
-                            </i:Interaction.Behaviors>
-                        </Ellipse>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Border>
+        <controls:CollectionControl DataContext="{Binding Collection1}"/>
+        <controls:CollectionControl Grid.Column="1" DataContext="{Binding Collection2}"/>
     </Grid>
 </Window>
