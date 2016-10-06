@@ -7,6 +7,7 @@
              xmlns:viewModels="clr-namespace:DragAndDropResearch.ViewModels"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:dragAndDropResearch="clr-namespace:DragAndDropResearch"
+             xmlns:dragAndDrop="clr-namespace:DragAndDropResearch.DragAndDrop"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance Type=viewModels:CollectionViewModel, IsDesignTimeCreatable=False}">
@@ -16,18 +17,21 @@
                 <ItemsPanelTemplate>
                     <WrapPanel Background="Beige" DataContext="{Binding}">
                         <i:Interaction.Behaviors>
-                            <dragAndDropResearch:FrameworkElementDropBehavior/>
+                            <dragAndDrop:FrameworkElementDropBehavior/>
                         </i:Interaction.Behaviors>
                     </WrapPanel>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Ellipse Height="10" Width="10" Margin="5" Fill="Blue">
+                    <!--                    
+                    <local:PieceControl Height="45" Width="45">
                         <i:Interaction.Behaviors>
                             <dragAndDropResearch:FrameworkElementDragBehavior/>
-                        </i:Interaction.Behaviors>
-                    </Ellipse>
+                        </i:Interaction.Behaviors>                        
+                    </local:PieceControl>
+                    -->
+                    <local:SquareControl Height="55" Width="55"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

@@ -66,14 +66,33 @@
     <Compile Include="Controls\CollectionControl.xaml.cs">
       <DependentUpon>CollectionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PieceControl.xaml.cs">
+      <DependentUpon>PieceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SquareControl.xaml.cs">
+      <DependentUpon>SquareControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\NotNullToVisibilityConverter.cs" />
+    <Compile Include="DragAndDrop\DragAdorner.cs" />
     <Compile Include="Helpers\CursorHelper.cs" />
-    <Compile Include="FrameworkElementDragBehavior.cs" />
-    <Compile Include="FrameworkElementDropBehavior.cs" />
+    <Compile Include="DragAndDrop\FrameworkElementDragBehavior.cs" />
+    <Compile Include="DragAndDrop\FrameworkElementDropBehavior.cs" />
     <Compile Include="Tests\CollectionAndItemTests.cs" />
+    <Compile Include="Tests\PieceAndSquareTests.cs" />
     <Compile Include="ViewModels\CollectionViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PieceViewModel.cs" />
+    <Compile Include="ViewModels\SquareViewModel.cs" />
     <Page Include="Controls\CollectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PieceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SquareControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -85,7 +104,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="IDropTarget.cs" />
+    <Compile Include="DragAndDrop\IDropTarget.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

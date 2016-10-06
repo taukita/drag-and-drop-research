@@ -10,11 +10,11 @@ namespace DragAndDropResearch.ViewModels
     {
         public MainViewModel()
         {
-            Collection1 = new CollectionViewModel {new ItemViewModel()};
-            Collection2 = new CollectionViewModel();
+            Square1 = new SquareViewModel(1, 1) {Piece = new PieceViewModel()};
+            Square2 = new SquareViewModel(1, 1);
         }
 
-        public CollectionViewModel Collection1 { get; }
-        public CollectionViewModel Collection2 { get; }
+        public SquareViewModel Square1 { get; }
+        public SquareViewModel Square2 { get; }
     }
 }

@@ -17,7 +17,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <controls:CollectionControl DataContext="{Binding Collection1}"/>
-        <controls:CollectionControl Grid.Column="1" DataContext="{Binding Collection2}"/>
+        <controls:SquareControl DataContext="{Binding Square1}" Height="100" Width="100"/>
+        <controls:SquareControl Grid.Column="1" DataContext="{Binding Square2}" Height="100" Width="100"/>
     </Grid>
 </Window>
