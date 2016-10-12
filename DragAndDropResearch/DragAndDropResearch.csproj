@@ -63,6 +63,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\ChessboardControl.xaml.cs">
+      <DependentUpon>ChessboardControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\CollectionControl.xaml.cs">
       <DependentUpon>CollectionControl.xaml</DependentUpon>
     </Compile>
@@ -79,11 +82,16 @@
     <Compile Include="DragAndDrop\FrameworkElementDropBehavior.cs" />
     <Compile Include="Tests\CollectionAndItemTests.cs" />
     <Compile Include="Tests\PieceAndSquareTests.cs" />
+    <Compile Include="ViewModels\ChessboardViewModel.cs" />
     <Compile Include="ViewModels\CollectionViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PieceViewModel.cs" />
     <Compile Include="ViewModels\SquareViewModel.cs" />
+    <Page Include="Controls\ChessboardControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\CollectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,7 +148,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="roadmap.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

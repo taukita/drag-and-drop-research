@@ -8,16 +8,23 @@
         xmlns:viewModels="clr-namespace:DragAndDropResearch.ViewModels"
         xmlns:controls="clr-namespace:DragAndDropResearch.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="800">
     <Window.DataContext>
         <viewModels:MainViewModel/>
     </Window.DataContext>
-    <Grid>
+    <Grid Background="LightGray">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <controls:SquareControl DataContext="{Binding Square1}" Height="100" Width="100"/>
-        <controls:SquareControl Grid.Column="1" DataContext="{Binding Square2}" Height="100" Width="100"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="SaddleBrown" BorderThickness="10" Grid.Column="1" Grid.Row="1">
+            <controls:ChessboardControl DataContext="{Binding Chessboard}"/>
+        </Border>
     </Grid>
 </Window>

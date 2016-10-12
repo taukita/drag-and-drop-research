@@ -12,9 +12,12 @@ namespace DragAndDropResearch.ViewModels
         {
             Square1 = new SquareViewModel(1, 1) {Piece = new PieceViewModel()};
             Square2 = new SquareViewModel(1, 1);
+            Chessboard = new ChessboardViewModel();
         }
 
         public SquareViewModel Square1 { get; }
         public SquareViewModel Square2 { get; }
+
+        public ChessboardViewModel Chessboard { get; }
     }
 }

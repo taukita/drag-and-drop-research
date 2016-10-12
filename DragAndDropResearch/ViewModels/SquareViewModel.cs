@@ -49,6 +49,8 @@ namespace DragAndDropResearch.ViewModels
 
         public Type Type => typeof (PieceViewModel);
 
+        public bool IsBlack => Row%2 == 0 ? Column%2 == 1 : Column%2 == 0;
+
         public void Drop(object item)
         {
             Piece = (PieceViewModel) item;
