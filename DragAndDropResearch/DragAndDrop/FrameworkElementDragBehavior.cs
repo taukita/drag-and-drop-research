@@ -31,7 +31,11 @@ namespace DragAndDropResearch.DragAndDrop
 
             AssociatedObject.Visibility = Visibility.Hidden;
 
-            DragDrop.DoDragDrop(AssociatedObject, AssociatedObject.DataContext, DragDropEffects.Move);
+            var dragTarget = AssociatedObject.DataContext as IDragTarget;
+
+            dragTarget?.BeforeDrag(dragTarget);
+
+            DragDrop.DoDragDrop(AssociatedObject, new DragDropInfo(AssociatedObject.DataContext), DragDropEffects.Move);
 
             AssociatedObject.Visibility = Visibility.Visible;
 

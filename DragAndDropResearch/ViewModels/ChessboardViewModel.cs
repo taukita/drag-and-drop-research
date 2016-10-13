@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,11 +12,20 @@ namespace DragAndDropResearch.ViewModels
     internal class ChessboardViewModel : ICollection<SquareViewModel>
     {
         readonly List<SquareViewModel> _list = new List<SquareViewModel>();
+        private SquareViewModel _activeSquare;
 
         public ChessboardViewModel()
         {
             var piece1 = new PieceViewModel();
+
+            piece1.BeforeDrag += PieceOnBeforeDrag;
+            piece1.AfterDrag += PieceOnAfterDrag;
+
             var piece2 = new PieceViewModel();
+
+            piece2.BeforeDrag += PieceOnBeforeDrag;
+            piece2.AfterDrag += PieceOnAfterDrag;
+
             for (var row = 7; row > -1; row--)
             {
                 for (var column = 0; column < 8; column++)
@@ -25,6 +35,19 @@ namespace DragAndDropResearch.ViewModels
                     piece2 = null;
                 }
             }
+        }
+
+        private void PieceOnAfterDrag(object sender)
+        {
+            var piece = (PieceViewModel)sender;
+            Debug.Assert(ActiveSquare == piece.Square);
+            ActiveSquare = null;
+        }
+
+        private void PieceOnBeforeDrag(object sender)
+        {
+            var piece = (PieceViewModel) sender;
+            ActiveSquare = piece.Square;
         }
 
         public IEnumerator<SquareViewModel> GetEnumerator()
@@ -64,5 +87,28 @@ namespace DragAndDropResearch.ViewModels
 
         public int Count { get; } = 64;
         public bool IsReadOnly { get; } = true;
+
+        private SquareViewModel ActiveSquare
+        {
+            get
+            {
+                return _activeSquare;
+            }
+            set
+            {
+                if (_activeSquare != value)
+                {
+                    if (ActiveSquare != null)
+                    {
+                        ActiveSquare.IsActive = false;
+                    }
+                    _activeSquare = value;
+                    if (ActiveSquare != null)
+                    {
+                        ActiveSquare.IsActive = true;
+                    }
+                }
+            }
+        }
     }
 }

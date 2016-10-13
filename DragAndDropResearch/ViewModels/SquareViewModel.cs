@@ -11,6 +11,7 @@ namespace DragAndDropResearch.ViewModels
     internal class SquareViewModel : ObservableObject, IDropTarget
     {
         private PieceViewModel _piece;
+        private bool _isActive;
 
         public SquareViewModel(int column, int row)
         {
@@ -54,6 +55,22 @@ namespace DragAndDropResearch.ViewModels
         public void Drop(object item)
         {
             Piece = (PieceViewModel) item;
+        }
+
+        public bool IsActive
+        {
+            get
+            {
+                return _isActive;
+            }
+            set
+            {
+                if (_isActive != value)
+                {
+                    _isActive = value;
+                    RaisePropertyChanged();
+                }
+            }
         }
     }
 }

@@ -12,13 +12,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance Type=viewModels:SquareViewModel, IsDesignTimeCreatable=False}">
-    <Border>
+    <Border BorderBrush="CadetBlue">
         <Border.Style>
             <Style TargetType="Border">
                 <Setter Property="Background" Value="Bisque"/>
+                <Setter Property="BorderThickness" Value="0"/>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding IsBlack}" Value="True">
                         <Setter Property="Background" Value="Chocolate"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsActive}" Value="True">
+                        <Setter Property="BorderThickness" Value="10"/>
                     </DataTrigger>
                 </Style.Triggers>
             </Style>

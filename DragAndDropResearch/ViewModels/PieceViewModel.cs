@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DragAndDropResearch.DragAndDrop;
 using DragAndDropResearch.MicroMvvm;
 
 namespace DragAndDropResearch.ViewModels
 {
-    internal class PieceViewModel : ObservableObject
+    internal class PieceViewModel : ObservableObject, IDragTarget
     {
         private SquareViewModel _square;
 
@@ -35,6 +36,25 @@ namespace DragAndDropResearch.ViewModels
                     RaisePropertyChanged();
                 }
             }
+        }
+
+        public event Action<object> AfterDrag;
+        public event Action<object> BeforeDrag;
+        public event Action<IDropTarget> OnDrop;
+
+        void IDragTarget.AfterDrag(object sender)
+        {
+            AfterDrag?.Invoke(sender);
+        }
+
+        void IDragTarget.BeforeDrag(object sender)
+        {
+            BeforeDrag?.Invoke(sender);
+        }
+
+        void IDragTarget.OnDrop(IDropTarget dropTarget)
+        {
+            OnDrop?.Invoke(dropTarget);
         }
     }
 }

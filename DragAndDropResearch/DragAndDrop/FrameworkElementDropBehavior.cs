@@ -18,11 +18,18 @@ namespace DragAndDropResearch.DragAndDrop
 
         private void AssociatedObjectOnDrop(object sender, DragEventArgs dragEventArgs)
         {
-            var dropTarget = AssociatedObject.DataContext as IDropTarget;
-            if (dropTarget != null && dragEventArgs.Data.GetDataPresent(dropTarget.Type))
+            if (dragEventArgs.Data.GetDataPresent(typeof (DragDropInfo)))
             {
-                dropTarget.Drop(dragEventArgs.Data.GetData(dropTarget.Type));
-                dragEventArgs.Handled = true;
+                var dragDropInfo = (DragDropInfo) dragEventArgs.Data.GetData(typeof (DragDropInfo));
+                var data = dragDropInfo?.Value;
+                (data as IDragTarget)?.AfterDrag(data);
+                var dropTarget = AssociatedObject.DataContext as IDropTarget;
+                if (dropTarget != null && data?.GetType() == dropTarget.Type)
+                {
+                    (data as IDragTarget)?.OnDrop(dropTarget);
+                    dropTarget.Drop(data);
+                    dragEventArgs.Handled = true;
+                }
             }
         }
     }

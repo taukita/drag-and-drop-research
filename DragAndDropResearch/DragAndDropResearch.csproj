@@ -77,6 +77,8 @@
     </Compile>
     <Compile Include="Converters\NotNullToVisibilityConverter.cs" />
     <Compile Include="DragAndDrop\DragAdorner.cs" />
+    <Compile Include="DragAndDrop\DragDropInfo.cs" />
+    <Compile Include="DragAndDrop\IDragTarget.cs" />
     <Compile Include="Helpers\CursorHelper.cs" />
     <Compile Include="DragAndDrop\FrameworkElementDragBehavior.cs" />
     <Compile Include="DragAndDrop\FrameworkElementDropBehavior.cs" />

@@ -13,14 +13,15 @@ namespace DragAndDropResearch.DragAndDrop
 {
     internal class DragAdorner : Adorner
     {
-        private readonly Brush _brush;
+        private Brush _brush;
         private Point _offset;
         private Point _location;
+        private Size _size;
 
         public DragAdorner(UIElement adornedElement, Point offset) : base(adornedElement)
         {
             _offset = offset;
-            _brush = GetBrushFromElement(adornedElement);
+            Initialize(adornedElement);
             IsHitTestVisible = false;
         }
 
@@ -41,12 +42,13 @@ namespace DragAndDropResearch.DragAndDrop
         {
             var p = new Point(Location.X, Location.Y);
             p.Offset(-_offset.X, -_offset.Y);
-            dc.DrawRectangle(_brush, null, new Rect(p, RenderSize));
+            dc.DrawRectangle(_brush, null, new Rect(p, _size));
         }
 
-        private static Brush GetBrushFromElement(Visual adornedElement)
+        private void Initialize(Visual adornedElement)
         {
             var bounds = VisualTreeHelper.GetDescendantBounds(adornedElement);
+            _size = bounds.Size;
             const double dpi = 96d;
 
             var rtb = new RenderTargetBitmap((int)bounds.Width, (int)bounds.Height, dpi, dpi, PixelFormats.Default);
@@ -73,7 +75,7 @@ namespace DragAndDropResearch.DragAndDrop
             bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
             bitmapImage.EndInit();
 
-            return new ImageBrush(bitmapImage);
+            _brush = new ImageBrush(bitmapImage);
         }
     }
 }
