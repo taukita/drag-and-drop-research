@@ -5,12 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using DragAndDropResearch.DragAndDrop;
 using DragAndDropResearch.MicroMvvm;
+using DragAndDropResearch.Pieces;
 
 namespace DragAndDropResearch.ViewModels
 {
     internal class PieceViewModel : ObservableObject, IDragTarget
     {
+        private PieceImpl _pieceImpl;
         private SquareViewModel _square;
+        public event Action<object> AfterDrag;
+        public event Action<object> BeforeDrag;
+        public event Action<IDropTarget> BeforeDrop;
+        public event Action<object> AfterDrop; 
+
+        public PieceViewModel(bool isBlack)
+        {
+            IsBlack = isBlack;
+            _pieceImpl = new PawnImpl(isBlack);
+        }
+
+        public bool IsBlack { get; }
 
         public SquareViewModel Square
         {
@@ -38,13 +52,14 @@ namespace DragAndDropResearch.ViewModels
             }
         }
 
-        public event Action<object> AfterDrag;
-        public event Action<object> BeforeDrag;
-        public event Action<IDropTarget> OnDrop;
-
         void IDragTarget.AfterDrag(object sender)
         {
             AfterDrag?.Invoke(sender);
+        }
+
+        void IDragTarget.AfterDrop(object sender)
+        {
+            AfterDrop?.Invoke(sender);
         }
 
         void IDragTarget.BeforeDrag(object sender)
@@ -52,9 +67,19 @@ namespace DragAndDropResearch.ViewModels
             BeforeDrag?.Invoke(sender);
         }
 
-        void IDragTarget.OnDrop(IDropTarget dropTarget)
+        bool IDragTarget.BeforeDrop(IDropTarget dropTarget)
         {
-            OnDrop?.Invoke(dropTarget);
+            var square = dropTarget as SquareViewModel;
+            if (!AvailableSquares().Contains(square)) return false;
+            BeforeDrop?.Invoke(dropTarget);
+            return true;
+        }
+
+        public SquareViewModel[] AvailableSquares()
+        {
+            return _pieceImpl.AvailableSquares(Square.Board, Square.Column, Square.Row)
+                .Where(square => square != null)
+                .ToArray();
         }
     }
 }

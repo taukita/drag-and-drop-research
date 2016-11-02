@@ -11,43 +11,59 @@ namespace DragAndDropResearch.ViewModels
 {
     internal class ChessboardViewModel : ICollection<SquareViewModel>
     {
-        readonly List<SquareViewModel> _list = new List<SquareViewModel>();
+        private readonly List<SquareViewModel> _list = new List<SquareViewModel>();
         private SquareViewModel _activeSquare;
 
-        public ChessboardViewModel()
+        private ChessboardViewModel()
         {
-            var piece1 = new PieceViewModel();
-
-            piece1.BeforeDrag += PieceOnBeforeDrag;
-            piece1.AfterDrag += PieceOnAfterDrag;
-
-            var piece2 = new PieceViewModel();
-
-            piece2.BeforeDrag += PieceOnBeforeDrag;
-            piece2.AfterDrag += PieceOnAfterDrag;
-
             for (var row = 7; row > -1; row--)
             {
                 for (var column = 0; column < 8; column++)
                 {
-                    _list.Add(new SquareViewModel(column, row) {Piece = piece1});
-                    piece1 = piece2;
-                    piece2 = null;
+                    _list.Add(new SquareViewModel(column, row, this));
                 }
             }
         }
 
-        private void PieceOnAfterDrag(object sender)
+        public SquareViewModel this[int column, int row]
         {
-            var piece = (PieceViewModel)sender;
-            Debug.Assert(ActiveSquare == piece.Square);
-            ActiveSquare = null;
+            get
+            {
+                return _list.FirstOrDefault(square => square.Column == column && square.Row == row);
+            }
         }
 
-        private void PieceOnBeforeDrag(object sender)
+        public SquareViewModel this[string index]
         {
-            var piece = (PieceViewModel) sender;
-            ActiveSquare = piece.Square;
+            get
+            {
+                var column = "ABCDEFGH".IndexOf(char.ToUpper(index[0]));
+                var row = "123456789".IndexOf(index[1]);
+                return this[column, row];
+            }
+        }
+
+        private SquareViewModel ActiveSquare
+        {
+            get
+            {
+                return _activeSquare;
+            }
+            set
+            {
+                if (_activeSquare != value)
+                {
+                    if (ActiveSquare != null)
+                    {
+                        ActiveSquare.IsActive = false;
+                    }
+                    _activeSquare = value;
+                    if (ActiveSquare != null)
+                    {
+                        ActiveSquare.IsActive = true;
+                    }
+                }
+            }
         }
 
         public IEnumerator<SquareViewModel> GetEnumerator()
@@ -88,27 +104,35 @@ namespace DragAndDropResearch.ViewModels
         public int Count { get; } = 64;
         public bool IsReadOnly { get; } = true;
 
-        private SquareViewModel ActiveSquare
+        public static ChessboardViewModel CreateEmpty()
         {
-            get
-            {
-                return _activeSquare;
-            }
-            set
-            {
-                if (_activeSquare != value)
-                {
-                    if (ActiveSquare != null)
-                    {
-                        ActiveSquare.IsActive = false;
-                    }
-                    _activeSquare = value;
-                    if (ActiveSquare != null)
-                    {
-                        ActiveSquare.IsActive = true;
-                    }
-                }
-            }
+            return new ChessboardViewModel();
+        }
+
+        public static ChessboardViewModel CreateFull()
+        {
+            var result = new ChessboardViewModel();
+            result[0, 6].Piece = result.Attach(new PieceViewModel(true));
+            result[1, 6].Piece = result.Attach(new PieceViewModel(true));
+            return result;
+        }
+
+        private PieceViewModel Attach(PieceViewModel piece)
+        {
+            piece.BeforeDrag += PieceOnBeforeDrag;
+            piece.AfterDrop += PieceOnAfterDrop;
+            return piece;
+        }
+
+        private void PieceOnAfterDrop(object sender)
+        {
+            ActiveSquare = null;
+        }
+
+        private void PieceOnBeforeDrag(object sender)
+        {
+            var piece = (PieceViewModel) sender;
+            ActiveSquare = piece.Square;
         }
     }
 }

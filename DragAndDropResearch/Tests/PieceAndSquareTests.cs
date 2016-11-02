@@ -14,8 +14,8 @@ namespace DragAndDropResearch.Tests
         [Test]
         public void OnePieceOneSquareTest()
         {
-            var piece = new PieceViewModel();
-            var square = new SquareViewModel(0, 0);
+            var piece = new PieceViewModel(true);
+            var square = new SquareViewModel(0, 0, null);
 
             Assert.AreEqual(null, piece.Square);
             Assert.AreEqual(null, square.Piece);

@@ -26,8 +26,10 @@ namespace DragAndDropResearch.DragAndDrop
                 var dropTarget = AssociatedObject.DataContext as IDropTarget;
                 if (dropTarget != null && data?.GetType() == dropTarget.Type)
                 {
-                    (data as IDragTarget)?.OnDrop(dropTarget);
-                    dropTarget.Drop(data);
+                    if ((data as IDragTarget)?.BeforeDrop(dropTarget) == true)
+                    {
+                        dropTarget.Drop(data);
+                    }
                     dragEventArgs.Handled = true;
                 }
             }

@@ -82,7 +82,10 @@
     <Compile Include="Helpers\CursorHelper.cs" />
     <Compile Include="DragAndDrop\FrameworkElementDragBehavior.cs" />
     <Compile Include="DragAndDrop\FrameworkElementDropBehavior.cs" />
+    <Compile Include="Pieces\PawnImpl.cs" />
+    <Compile Include="Pieces\PieceImpl.cs" />
     <Compile Include="Tests\CollectionAndItemTests.cs" />
+    <Compile Include="Tests\PawnTests.cs" />
     <Compile Include="Tests\PieceAndSquareTests.cs" />
     <Compile Include="ViewModels\ChessboardViewModel.cs" />
     <Compile Include="ViewModels\CollectionViewModel.cs" />

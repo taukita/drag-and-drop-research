@@ -9,7 +9,8 @@ namespace DragAndDropResearch.DragAndDrop
     interface IDragTarget
     {
         void AfterDrag(object sender);
+        void AfterDrop(object sender);
         void BeforeDrag(object sender);
-        void OnDrop(IDropTarget dropTarget);
+        bool BeforeDrop(IDropTarget dropTarget);
     }
 }

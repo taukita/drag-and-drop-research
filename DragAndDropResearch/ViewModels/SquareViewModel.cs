@@ -12,15 +12,18 @@ namespace DragAndDropResearch.ViewModels
     {
         private PieceViewModel _piece;
         private bool _isActive;
-
-        public SquareViewModel(int column, int row)
+        
+        public SquareViewModel(int column, int row, ChessboardViewModel board)
         {
             Column = column;
             Row = row;
+            Board = board;
         }
 
-        public int Column { get; private set; }
-        public int Row { get; private set; }
+        public int Column { get; }
+        public int Row { get; }
+
+        public string Name => $"{"ABCDEFGH"[Column]}{"12345678"[Row]}";
 
         public PieceViewModel Piece
         {
@@ -47,6 +50,8 @@ namespace DragAndDropResearch.ViewModels
                 }
             }
         }
+
+        public ChessboardViewModel Board { get; }
 
         public Type Type => typeof (PieceViewModel);
 

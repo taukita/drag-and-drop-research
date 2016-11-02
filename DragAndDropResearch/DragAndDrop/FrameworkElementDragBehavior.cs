@@ -37,6 +37,8 @@ namespace DragAndDropResearch.DragAndDrop
 
             DragDrop.DoDragDrop(AssociatedObject, new DragDropInfo(AssociatedObject.DataContext), DragDropEffects.Move);
 
+            dragTarget?.AfterDrop(dragTarget);
+
             AssociatedObject.Visibility = Visibility.Visible;
 
             _adornerLayer.Remove(_dragAdorner);
