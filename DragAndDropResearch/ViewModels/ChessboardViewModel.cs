@@ -112,8 +112,25 @@ namespace DragAndDropResearch.ViewModels
         public static ChessboardViewModel CreateFull()
         {
             var result = new ChessboardViewModel();
-            result[0, 6].Piece = result.Attach(new PieceViewModel(true));
-            result[1, 6].Piece = result.Attach(new PieceViewModel(true));
+
+            result["A2"].Piece = result.Attach(new PieceViewModel(false));
+            result["B2"].Piece = result.Attach(new PieceViewModel(false));
+            result["C2"].Piece = result.Attach(new PieceViewModel(false));
+            result["D2"].Piece = result.Attach(new PieceViewModel(false));
+            result["E2"].Piece = result.Attach(new PieceViewModel(false));
+            result["F2"].Piece = result.Attach(new PieceViewModel(false));
+            result["G2"].Piece = result.Attach(new PieceViewModel(false));
+            result["H2"].Piece = result.Attach(new PieceViewModel(false));
+
+            result["A7"].Piece = result.Attach(new PieceViewModel(true));
+            result["B7"].Piece = result.Attach(new PieceViewModel(true));
+            result["C7"].Piece = result.Attach(new PieceViewModel(true));
+            result["D7"].Piece = result.Attach(new PieceViewModel(true));
+            result["E7"].Piece = result.Attach(new PieceViewModel(true));
+            result["F7"].Piece = result.Attach(new PieceViewModel(true));
+            result["G7"].Piece = result.Attach(new PieceViewModel(true));
+            result["H7"].Piece = result.Attach(new PieceViewModel(true));
+
             return result;
         }
 

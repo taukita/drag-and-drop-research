@@ -16,6 +16,17 @@ namespace DragAndDropResearch.Pieces
 
         public bool IsBlack { get; }
 
+        public string Name
+        {
+            get
+            {
+                var color = IsBlack ? "Black" : "White";
+                return $"{color}{NameImpl}";
+            }
+        }
+
+        protected abstract string NameImpl { get; }
+
         public abstract IEnumerable<SquareViewModel> AvailableSquares(ChessboardViewModel board, int column, int row);
     }
 }

@@ -4,23 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DragAndDropResearch.Controls"
+             xmlns:viewModels="clr-namespace:DragAndDropResearch.ViewModels"
+             xmlns:converters="clr-namespace:DragAndDropResearch.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Image>
-        <Image.Source>
-            <DrawingImage>
-                <DrawingImage.Drawing>
-                    <DrawingGroup Opacity="1">
-                        <DrawingGroup.Children>
-                            <GeometryDrawing Brush="#FF000000" Pen="{x:Null}">
-                                <GeometryDrawing.Geometry>
-                                    <PathGeometry FillRule="Nonzero" Figures="M22,9C24.2099990844727,9 26,10.789999961853 26,13 26,13.8900003433228 25.7099990844727,14.710000038147 25.2199993133545,15.3800001144409 27.1700000762939,16.5 28.5,18.5900001525879 28.5,21 28.5,23.0300006866455 27.5599994659424,24.8400001525879 26.0900001525879,26.0300006866455 29.0900001525879,27.0900001525879 33.5,31.5799999237061 33.5,39.5L10.5,39.5C10.5,31.5799999237061 14.9099998474121,27.0900001525879 17.9099998474121,26.0300006866455 16.4400005340576,24.8400001525879 15.5,23.0300006866455 15.5,21 15.5,18.5900001525879 16.8299999237061,16.5 18.7800006866455,15.3800001144409 18.2900009155273,14.710000038147 18,13.8900003433228 18,13 18,10.789999961853 19.7900009155273,9 22,9z" />
-                                </GeometryDrawing.Geometry>
-                            </GeometryDrawing>
-                        </DrawingGroup.Children>
-                    </DrawingGroup>
-                </DrawingImage.Drawing>
-            </DrawingImage>
-        </Image.Source>
-    </Image>
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance Type=viewModels:PieceViewModel, IsDesignTimeCreatable=False}">
+    <Image Source="{Binding Impl, Converter={converters:PieceImplConverter}}"/>
 </UserControl>

@@ -11,7 +11,6 @@ namespace DragAndDropResearch.ViewModels
 {
     internal class PieceViewModel : ObservableObject, IDragTarget
     {
-        private PieceImpl _pieceImpl;
         private SquareViewModel _square;
         public event Action<object> AfterDrag;
         public event Action<object> BeforeDrag;
@@ -21,7 +20,7 @@ namespace DragAndDropResearch.ViewModels
         public PieceViewModel(bool isBlack)
         {
             IsBlack = isBlack;
-            _pieceImpl = new PawnImpl(isBlack);
+            Impl = new PawnImpl(isBlack);
         }
 
         public bool IsBlack { get; }
@@ -52,6 +51,8 @@ namespace DragAndDropResearch.ViewModels
             }
         }
 
+        public PieceImpl Impl { get; }
+
         void IDragTarget.AfterDrag(object sender)
         {
             AfterDrag?.Invoke(sender);
@@ -77,7 +78,7 @@ namespace DragAndDropResearch.ViewModels
 
         public SquareViewModel[] AvailableSquares()
         {
-            return _pieceImpl.AvailableSquares(Square.Board, Square.Column, Square.Row)
+            return Impl.AvailableSquares(Square.Board, Square.Column, Square.Row)
                 .Where(square => square != null)
                 .ToArray();
         }

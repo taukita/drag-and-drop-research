@@ -13,6 +13,8 @@ namespace DragAndDropResearch.Pieces
         {
         }
 
+        protected override string NameImpl => "Pawn";
+
         public override IEnumerable<SquareViewModel> AvailableSquares(ChessboardViewModel board, int column, int row)
         {
             yield return board[column, row + (IsBlack ? -1 : 1)];
