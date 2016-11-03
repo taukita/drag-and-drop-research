@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DragAndDropResearch.Pieces;
 using DragAndDropResearch.ViewModels;
 using NUnit.Framework;
 
@@ -15,7 +16,7 @@ namespace DragAndDropResearch.Tests
         public void WhitePawnFromB2ShouldMoveToB3OrB4()
         {
             var board = ChessboardViewModel.CreateEmpty();
-            board["B2"].Piece = new PieceViewModel(false);
+            board["B2"].Piece = new PieceViewModel(new PawnImpl(false));
 
             var availableSquares = board["B2"].Piece.AvailableSquares();
             Assert.AreEqual(2, availableSquares.Length);
@@ -27,7 +28,7 @@ namespace DragAndDropResearch.Tests
         public void WhitePawnFromB3ShouldMoveToB4()
         {
             var board = ChessboardViewModel.CreateEmpty();
-            board["B3"].Piece = new PieceViewModel(false);
+            board["B3"].Piece = new PieceViewModel(new PawnImpl(false));
 
             var availableSquares = board["B3"].Piece.AvailableSquares();
             Assert.AreEqual(1, availableSquares.Length);

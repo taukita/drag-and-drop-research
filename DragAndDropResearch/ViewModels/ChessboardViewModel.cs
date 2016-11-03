@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DragAndDropResearch.Pieces;
 
 namespace DragAndDropResearch.ViewModels
 {
@@ -113,23 +114,35 @@ namespace DragAndDropResearch.ViewModels
         {
             var result = new ChessboardViewModel();
 
-            result["A2"].Piece = result.Attach(new PieceViewModel(false));
-            result["B2"].Piece = result.Attach(new PieceViewModel(false));
-            result["C2"].Piece = result.Attach(new PieceViewModel(false));
-            result["D2"].Piece = result.Attach(new PieceViewModel(false));
-            result["E2"].Piece = result.Attach(new PieceViewModel(false));
-            result["F2"].Piece = result.Attach(new PieceViewModel(false));
-            result["G2"].Piece = result.Attach(new PieceViewModel(false));
-            result["H2"].Piece = result.Attach(new PieceViewModel(false));
+            // White
 
-            result["A7"].Piece = result.Attach(new PieceViewModel(true));
-            result["B7"].Piece = result.Attach(new PieceViewModel(true));
-            result["C7"].Piece = result.Attach(new PieceViewModel(true));
-            result["D7"].Piece = result.Attach(new PieceViewModel(true));
-            result["E7"].Piece = result.Attach(new PieceViewModel(true));
-            result["F7"].Piece = result.Attach(new PieceViewModel(true));
-            result["G7"].Piece = result.Attach(new PieceViewModel(true));
-            result["H7"].Piece = result.Attach(new PieceViewModel(true));
+            // Pawns
+            result["A2"].Piece = result.Attach(new PieceViewModel(new PawnImpl(false)));
+            result["B2"].Piece = result.Attach(new PieceViewModel(new PawnImpl(false)));
+            result["C2"].Piece = result.Attach(new PieceViewModel(new PawnImpl(false)));
+            result["D2"].Piece = result.Attach(new PieceViewModel(new PawnImpl(false)));
+            result["E2"].Piece = result.Attach(new PieceViewModel(new PawnImpl(false)));
+            result["F2"].Piece = result.Attach(new PieceViewModel(new PawnImpl(false)));
+            result["G2"].Piece = result.Attach(new PieceViewModel(new PawnImpl(false)));
+            result["H2"].Piece = result.Attach(new PieceViewModel(new PawnImpl(false)));
+            // Rooks
+            result["A1"].Piece = result.Attach(new PieceViewModel(new RookImpl(false)));
+            result["H1"].Piece = result.Attach(new PieceViewModel(new RookImpl(false)));
+
+            // Black
+
+            // Pawns
+            result["A7"].Piece = result.Attach(new PieceViewModel(new PawnImpl(true)));
+            result["B7"].Piece = result.Attach(new PieceViewModel(new PawnImpl(true)));
+            result["C7"].Piece = result.Attach(new PieceViewModel(new PawnImpl(true)));
+            result["D7"].Piece = result.Attach(new PieceViewModel(new PawnImpl(true)));
+            result["E7"].Piece = result.Attach(new PieceViewModel(new PawnImpl(true)));
+            result["F7"].Piece = result.Attach(new PieceViewModel(new PawnImpl(true)));
+            result["G7"].Piece = result.Attach(new PieceViewModel(new PawnImpl(true)));
+            result["H7"].Piece = result.Attach(new PieceViewModel(new PawnImpl(true)));
+            // Rooks
+            result["A8"].Piece = result.Attach(new PieceViewModel(new RookImpl(true)));
+            result["H8"].Piece = result.Attach(new PieceViewModel(new RookImpl(true)));
 
             return result;
         }

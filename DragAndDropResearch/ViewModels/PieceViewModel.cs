@@ -17,10 +17,10 @@ namespace DragAndDropResearch.ViewModels
         public event Action<IDropTarget> BeforeDrop;
         public event Action<object> AfterDrop; 
 
-        public PieceViewModel(bool isBlack)
+        public PieceViewModel(PieceImpl impl)
         {
-            IsBlack = isBlack;
-            Impl = new PawnImpl(isBlack);
+            IsBlack = impl.IsBlack;
+            Impl = impl;
         }
 
         public bool IsBlack { get; }

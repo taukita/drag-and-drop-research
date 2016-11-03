@@ -86,6 +86,7 @@
     <Compile Include="DragAndDrop\FrameworkElementDropBehavior.cs" />
     <Compile Include="Pieces\PawnImpl.cs" />
     <Compile Include="Pieces\PieceImpl.cs" />
+    <Compile Include="Pieces\RookImpl.cs" />
     <Compile Include="Tests\CollectionAndItemTests.cs" />
     <Compile Include="Tests\PawnTests.cs" />
     <Compile Include="Tests\PieceAndSquareTests.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DragAndDropResearch.Pieces;
 using DragAndDropResearch.ViewModels;
 using NUnit.Framework;
 
@@ -14,7 +15,7 @@ namespace DragAndDropResearch.Tests
         [Test]
         public void OnePieceOneSquareTest()
         {
-            var piece = new PieceViewModel(true);
+            var piece = new PieceViewModel(new PawnImpl(true));
             var square = new SquareViewModel(0, 0, null);
 
             Assert.AreEqual(null, piece.Square);
