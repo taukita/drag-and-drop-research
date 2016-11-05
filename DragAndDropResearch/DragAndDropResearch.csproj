@@ -84,8 +84,12 @@
     <Compile Include="Helpers\CursorHelper.cs" />
     <Compile Include="DragAndDrop\FrameworkElementDragBehavior.cs" />
     <Compile Include="DragAndDrop\FrameworkElementDropBehavior.cs" />
+    <Compile Include="Pieces\BishopImpl.cs" />
+    <Compile Include="Pieces\KingImpl.cs" />
+    <Compile Include="Pieces\KnightImpl.cs" />
     <Compile Include="Pieces\PawnImpl.cs" />
     <Compile Include="Pieces\PieceImpl.cs" />
+    <Compile Include="Pieces\QueenImpl.cs" />
     <Compile Include="Pieces\RookImpl.cs" />
     <Compile Include="Tests\CollectionAndItemTests.cs" />
     <Compile Include="Tests\PawnTests.cs" />

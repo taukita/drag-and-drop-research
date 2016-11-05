@@ -128,6 +128,15 @@ namespace DragAndDropResearch.ViewModels
             // Rooks
             result["A1"].Piece = result.Attach(new PieceViewModel(new RookImpl(false)));
             result["H1"].Piece = result.Attach(new PieceViewModel(new RookImpl(false)));
+            // Knights
+            result["B1"].Piece = result.Attach(new PieceViewModel(new KnightImpl(false)));
+            result["G1"].Piece = result.Attach(new PieceViewModel(new KnightImpl(false)));
+            // Bishops
+            result["C1"].Piece = result.Attach(new PieceViewModel(new BishopImpl(false)));
+            result["F1"].Piece = result.Attach(new PieceViewModel(new BishopImpl(false)));
+            // Royals
+            result["D1"].Piece = result.Attach(new PieceViewModel(new QueenImpl(false)));
+            result["E1"].Piece = result.Attach(new PieceViewModel(new KingImpl(false)));
 
             // Black
 
@@ -143,6 +152,15 @@ namespace DragAndDropResearch.ViewModels
             // Rooks
             result["A8"].Piece = result.Attach(new PieceViewModel(new RookImpl(true)));
             result["H8"].Piece = result.Attach(new PieceViewModel(new RookImpl(true)));
+            // Knights
+            result["B8"].Piece = result.Attach(new PieceViewModel(new KnightImpl(true)));
+            result["G8"].Piece = result.Attach(new PieceViewModel(new KnightImpl(true)));
+            // Bishops
+            result["C8"].Piece = result.Attach(new PieceViewModel(new BishopImpl(true)));
+            result["F8"].Piece = result.Attach(new PieceViewModel(new BishopImpl(true)));
+            // Royals
+            result["D8"].Piece = result.Attach(new PieceViewModel(new QueenImpl(true)));
+            result["E8"].Piece = result.Attach(new PieceViewModel(new KingImpl(true)));
 
             return result;
         }

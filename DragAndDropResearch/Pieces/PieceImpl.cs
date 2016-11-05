@@ -28,5 +28,30 @@ namespace DragAndDropResearch.Pieces
         protected abstract string NameImpl { get; }
 
         public abstract IEnumerable<SquareViewModel> AvailableSquares(ChessboardViewModel board, int column, int row);
+
+        protected IEnumerable<SquareViewModel> AvailableSquares(
+            ChessboardViewModel board, int column, int row,
+            Func<int, int> updateColumn, Func<int, int> updateRow)
+        {
+            var c = column;
+            var r = row;
+            var finished = false;
+            while (!finished)
+            {
+                c = updateColumn(c);
+                r = updateRow(r);
+                var square = board[c, r];
+                finished = square == null || square.Piece != null;
+                if (square?.Piece?.IsBlack != IsBlack)
+                {
+                    yield return square;
+                }
+            }
+        }
+
+        protected SquareViewModel Check(SquareViewModel square)
+        {
+            return square?.Piece?.IsBlack != IsBlack ? square : null;
+        }
     }
 }
